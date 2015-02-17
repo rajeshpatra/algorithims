@@ -10,14 +10,12 @@
 <body>
 	<?php 
 		if(isset($_POST['submit'])){
-
 			$name = $_POST['name'];
 			$email = $_POST['email'];
 			$mobno = $_POST['phone'];
 			$pass1 = $_POST['password'];
 			$pass = $_POST['confpassword'];
-
-			if($pass1 == $pass){
+			if ($pass1 == $pass){
 				$register = "INSERT INTO electricals_tbl(name, email, mobno, pass) VALUES ('{$name}','{$email}','{$mobno}','{$pass}')";
 				$result = mysql_query($register);
 				if(!$result){
@@ -25,8 +23,8 @@
 				} else{
 				echo 'inserted to table.';
 				}
-			} else{
-			echo "password does not match. Try again.";
+			} else {
+				echo "password doesn't match.";
 			}
 		}
 	?>

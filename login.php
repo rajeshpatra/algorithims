@@ -19,6 +19,7 @@
 		} else {
 			$row = mysql_fetch_assoc($result);
 			echo "Hello " . $row['name'];
+			?> <a href="logout.php">LOGOUT</a> <?php 
 		}
 	}
  ?>
