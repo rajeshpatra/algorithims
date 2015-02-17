@@ -1,36 +1,29 @@
-<?php require "home.php" ?>
+<?php 
+	require 'home.php';
+	require 'connection.php';
+ ?>
 <!DOCTYPE html>
 <html>
 <head>
 	<title>Login</title>
 </head>
-<body> 
+<body>
 <?php 
-	require 'connection.php';
 	if(isset($_POST['login'])){
 		$email = $_POST['email'];
 		$pass = $_POST['password'];
-
-		$query = "SELECT id FROM electricals_tbl WHERE email= '{$email}' ";
+		$query = "SELECT * FROM electricals_tbl WHERE email='{$email}' AND pass='{$pass}' ";
 		$result = mysql_query($query);
-
-		if($result){
-			if(mysql_num_rows($result) == 1){
-
-				$query1 = "SELECT * FROM electricals_tbl WHERE email= '{$email}' AND pass = '{$pass}' ";
-				$result1 = mysql_query($query1);
-
-				if($result1){
-					if(mysql_num_rows($result1) == 1){
-						echo "Hello " . "'{$email}' .";
-					}
-				}
-			}
+		if(!$result){
+			die('error' . mysql_error());
+		} else {
+			$row = mysql_fetch_assoc($result);
+			echo "Hello " . $row['name'];
 		}
 	}
  ?>
 <h3>Login to drive your car.</h3>
-	<form>
+	<form method="post" action="login.php">
 		<table>
 			<tr>
 				<td><label>Email</label></td>
