@@ -12,12 +12,17 @@
 			if(isset($_POST['change'])){
 				$email = $_POST['email'];
 				$pass = $_POST['password'];
-				$query = "UPDATE electricals_tbl SET pass='{$pass}' WHERE email='{$email}'";
-				$result = mysql_query($query);
-				if (!$result){
-					die('error' . mysql_errro());
-				}else {
-					echo "password changed.";
+				$pass1 = $_POST['confpassword'];
+				if($pass == $pass1){
+					$query = "UPDATE electricals_tbl SET pass='{$pass}' WHERE email='{$email}'";
+					$result = mysql_query($query);
+					if (!$result){
+						die('error' . mysql_errro());
+					}else {
+						echo "password changed.";
+					}
+				}else{
+					echo "password doesn't match." . mysql_error();
 				}
 			}
 		?>
