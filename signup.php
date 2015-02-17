@@ -1,5 +1,6 @@
 <?php 
 	require "home.php";
+	require "connection.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -8,7 +9,6 @@
 </head>
 <body>
 	<?php 
-		require "connection.php";
 		if(isset($_POST['submit'])){
 
 			$name = $_POST['name'];
@@ -19,18 +19,19 @@
 
 			if($pass1 == $pass){
 				$register = "INSERT INTO electricals_tbl(name, email, mobno, pass) VALUES ('{$name}','{$email}','{$mobno}','{$pass}')";
-				echo "hey";
 				$result = mysql_query($register);
-				if($result){
+				if(!$result){
 					die('could not inserted into table.' . mysql_error());
-				}
+				} else{
 				echo 'inserted to table.';
-			}
+				}
+			} else{
 			echo "password does not match. Try again.";
+			}
 		}
 	?>
  <h3>Add details.</h3>
- <form>
+ <form method="post" action="signup.php">
  <table>
 	 	<tr>
 		 	<td><label>Name</label></td>
