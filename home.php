@@ -4,6 +4,7 @@
 	<title>Need For Speed</title>
 </head>
 <body>
+<h2><a href="home.php">HOME</a></h2>
 	<div>
 		<h1>Cars</h1>
 		<p>
