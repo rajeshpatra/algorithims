@@ -1,37 +1,28 @@
+<?php 
+	require 'connection.php';
+ ?>
 <!DOCTYPE html>
 <html>
 <head>
 	<title>Change Password</title>
 </head>
 <body>
-<?php 
-	require "connection.php";
-	if(isset($_POST['change'])){
-
-		$email = $_POST['email'];
-		$pass = $_POST['password'];
-		$pass1 = $_POST['confpassword'];
-		if ($pass == $pass1){
-
-			$query = "SELECT * FROM electricals_tbl WHERE email='{$email}' ";
-			$result = mysql_query($query);
-
-			if($result){
-				if(mysql_num_rows($result) == 1){
-
-					$query1 = "UPDATE electricals_tbl SET pass='{$pass}' WHERE email='{$email}' ";
-					$result1 = mysql_query($query1)
-
-					if($result1){
-						echo "password changed.";
-					}
+	<h2><a href="home.php">HOME</a></h2>
+		<?php
+			if(isset($_POST['change'])){
+				$email = $_POST['email'];
+				$pass = $_POST['password'];
+				$query = "UPDATE electricals_tbl SET pass='{$pass}' WHERE email='{$email}'";
+				$result = mysql_query($query);
+				if (!$result){
+					die('error' . mysql_errro());
+				}else {
+					echo "password changed.";
 				}
 			}
-		}
-	}
- ?>
-<h3>Enter your new password.</h3>
-	<form>
+		?>
+	<h3>Enter your new password.</h3>
+	<form method="post" action="reset.php">
 		<table>
 			<tr>
 				<td><label>Email</label></td>
