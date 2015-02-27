@@ -1,11 +1,13 @@
 <?php 
-	require "home.php";
+	//require "home.php";
+	//YOU CAN'T REQUIRE THE home.php here, YOU'LL BE HAVING 2 <head> elements, since they exist in both the files.
 	require "connection.php";
 ?>
 <!DOCTYPE html>
 <html>
 <head>
 	<title>Register With Us</title>
+	<link rel="stylesheet" type="text/css" href="dist/css/style.css">
 </head>
 <body>
 	<?php 
@@ -16,6 +18,7 @@
 			$pass1 = $_POST['password'];
 			$pass = $_POST['confpassword'];
 			if ($pass1 == $pass){
+				$pass = md5($pass1);
 				$register = "INSERT INTO electricals_tbl(name, email, mobno, pass) VALUES ('{$name}','{$email}','{$mobno}','{$pass}')";
 				$result = mysql_query($register);
 				if(!$result){

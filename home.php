@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title>Need For Speed</title>
+	<link rel="stylesheet" type="text/css" href="dist/css/style.css">
 </head>
 <body>
 <h2><a href="home.php">HOME</a></h2>
