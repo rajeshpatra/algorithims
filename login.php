@@ -1,5 +1,5 @@
 <?php 
-	require 'home.php';
+	//require 'home.php';
 	require 'connection.php';
  ?>
 <!DOCTYPE html>
@@ -11,7 +11,7 @@
 <?php 
 	if(isset($_POST['login'])){
 		$email = $_POST['email'];
-		$pass = $_POST['password'];
+		$pass = md5($_POST['password']);
 		$query = "SELECT * FROM electricals_tbl WHERE email='{$email}' AND pass='{$pass}' ";
 		$result = mysql_query($query);
 		if(!$result){

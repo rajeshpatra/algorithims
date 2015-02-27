@@ -14,6 +14,7 @@
 				$pass = $_POST['password'];
 				$pass1 = $_POST['confpassword'];
 				if($pass == $pass1){
+					$pass = md5($pass1);
 					$query = "UPDATE electricals_tbl SET pass='{$pass}' WHERE email='{$email}'";
 					$result = mysql_query($query);
 					if (!$result){
